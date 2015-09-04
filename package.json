@@ -1,0 +1,15 @@
+{
+  "name": "ago",
+  "version": "1.0.0",
+  "description": "How long ago feature.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "date",
+    "ago"
+  ],
+  "author": "Modesto Figuereo Fernandez <figuereo.fernandez.modesto@gmail.com>",
+  "license": "GPL-2.0"
+}
