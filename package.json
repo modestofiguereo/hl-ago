@@ -23,7 +23,7 @@
     "url": "https://github.com/ModestoFiguereo/hl-ago/issues"
   },
   "homepage": "https://github.com/ModestoFiguereo/hl-ago",
-  "dependencies": {
+  "devDependencies": {
     "tape": "^4.2.0"
   }
 }
