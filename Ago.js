@@ -99,14 +99,7 @@ module.exports = (function() {
           plural: '{millennium} millenniums ago'
         }
       },
-      date: '{m} {d}th {y}',
-      time: {
-        _12: {
-          am: '{h}:{min}:{sec} am',
-          pm: '{h}:{min}:{sec} pm'
-        },
-        _24: '{h}:{min}:{sec}'
-      }
+      date: '{m} {d}th {y}'
     }
   };
 
@@ -123,12 +116,26 @@ module.exports = (function() {
     second: 1000
   };
 
+  var timeFormats = {
+    _12: {
+      am: '{h}:{min}:{sec} am',
+      pm: '{h}:{min}:{sec} pm'
+    },
+    _24: '{h}:{min}:{sec}'
+  }
+
+  var settings = {
+    date: new Date(),
+    lang: 'en-US',
+    hourFormat: '24'
+  };
+
   function Ago(options) {
     var options = options || {};
 
-    this.date = options.date || new Date();
-    this.lang = options.lang || 'en-US';
-    this.hourFormat = options.hourFormat || '24';
+    settings.date = options.date || new Date();
+    settings.lang = options.lang || 'en-US';
+    settings.hourFormat = options.hourFormat || '24';
   }
 
   Ago.prototype.toString = function () {
@@ -148,8 +155,8 @@ module.exports = (function() {
    */
   Ago.prototype.ago = function () {
 
-    var date = this.date,
-        language = languages[this.lang],
+    var date = settings.date,
+        language = languages[settings.lang],
         units = language.units;
 
     // Convert both dates to milliseconds
@@ -204,8 +211,8 @@ module.exports = (function() {
    * @returns  String  Time string.
    */
   Ago.prototype.getTime = function () {
-    var date = this.date,
-        language = languages[this.lang],
+    var date = settings.date,
+        language = languages[settings.lang],
   	    hours = date.getHours(),
   	    min = date.getMinutes(),
         sec = date.getSeconds(),
@@ -215,18 +222,18 @@ module.exports = (function() {
     hours = (hours+24)%24;
 
     if(hours == 0) {
-      hours = this.hourFormat == "24" ? hours : 12;
+      hours = settings.hourFormat == "24" ? hours : 12;
     }
     else if(hours > 12)
     {
-      hours = this.hourFormat == "24" ? hours : hours % 12;
+      hours = settings.hourFormat == "24" ? hours : hours % 12;
       mid = 'pm';
     }
     // End of check meridian --------------------------------
 
-    var time = language.time['_' + this.hourFormat];
+    var time = timeFormats['_' + settings.hourFormat];
 
-    if(this.hourFormat == "12") {
+    if(settings.hourFormat == "12") {
       time = time[mid];
     }
 
@@ -247,23 +254,75 @@ module.exports = (function() {
    * @returns  String  Date string.
    */
   Ago.prototype.getDate = function () {
-    var language = languages[this.lang],
+    var language = languages[settings.lang],
         date = language.date;
 
     // Replace month, day, year
-    date = date.replace('{m}', language.months[this.date.getMonth()])
-               .replace('{d}', this.date.getDate())
-               .replace('{y}', this.date.getFullYear());
+    date = date.replace('{m}', language.months[settings.date.getMonth()])
+               .replace('{d}', settings.date.getDate())
+               .replace('{y}', settings.date.getFullYear());
 
     return date;
   };
 
+  /*
+   * Sets the language to be used.
+   *
+   * @param  language  String
+   *
+   * @returns  void
+   */
   Ago.prototype.setLanguage = function (language) {
-    // TODO: implement this.
+    if(!languages[language]) {
+      throw "This language is not supported.";
+    }
+
+    settings.lang = language;
   }
 
-  Ago.prototype.loadCustomLanguages = function (language) {
-    // TODO: implement this.
+  /*
+   * Gets the language currently used.
+   *
+   * @returns  String
+   */
+  Ago.prototype.getLanguage = function () {
+    return settings.lang;
+  }
+
+  /*
+   * Sets hour format (24 or 12).
+   *
+   * @returns  void
+   */
+  Ago.prototype.setHourFormat = function (format) {
+
+    if(format != 12 && format != 24) {
+      throw "Hour format should be 24 or 12.";
+    }
+
+    settings.hourFormat = format;
+  }
+
+  /*
+   * Gets hour format.
+   *
+   * @returns  String
+   */
+  Ago.prototype.getHourFormat = function () {
+    return settings.hourFormat;
+  }
+
+  /*
+   * Load custom languages.
+   *
+   * @param  langs  Array  A collection containing the languages.
+   *
+   * @returns  String
+   */
+  Ago.prototype.loadCustomLanguages = function (langs) {
+    for(var i = 0; i < langs.length; i++) {
+      languages[langs[i].language] = langs[i].body;
+    }
   }
 
   return Ago;

@@ -49,6 +49,31 @@ API
 
 // TODO: Add documentation
 
+`Ago.setLanguage(language)`
+----------------
+
+// TODO: Add documentation
+
+`Ago.getLanguage()`
+----------------
+
+// TODO: Add documentation
+
+`Ago.setHourFormat(format)`
+----------------
+
+// TODO: Add documentation
+
+`Ago.getHourFormat()`
+----------------
+
+// TODO: Add documentation
+
+`Ago.loadCustomLanguages(languages)`
+----------------
+
+// TODO: Add documentation
+
 
 LICENSE
 =======
