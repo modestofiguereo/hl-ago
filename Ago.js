@@ -13,32 +13,9 @@
 
 'use strict';
 
+var zeroFill = require('zero-fill');
+
 module.exports = (function() {
-
-  /*
-   * Fills a number with zeros.
-   * Examples:
-   *
-   *  zeroFill(8, 5)  => 00008
-   *  zeroFill(10, 8) => 00000010
-   *  zeroFill(4, 2)  => 04
-   *
-   * @param  number  Number  The number to be filled.
-   * @param  width   Number  How many digits the number will have.
-   *
-   * @returns  String  The number filled with zeros.
-   */
-  function zeroFill(number, width)
-  {
-    width -= number.toString().length;
-
-    if ( width > 0 )
-    {
-      return new Array( width + (/\./.test( number ) ? 2 : 1) ).join( '0' ) + number;
-    }
-
-    return number + "";
-  }
 
   // Default Supported Languages.
   var languages = {

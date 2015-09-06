@@ -25,5 +25,8 @@
   "homepage": "https://github.com/ModestoFiguereo/hl-ago",
   "devDependencies": {
     "tape": "^4.2.0"
+  },
+  "dependencies": {
+    "zero-fill": "^2.2.1"
   }
 }
