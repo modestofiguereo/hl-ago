@@ -1,18 +1,28 @@
 {
-  "name": "ago",
-  "version": "1.0.0",
-  "description": "How long ago feature.",
+  "name": "hl-ago",
+  "version": "0.0.7",
+  "description": "A tool for calculating how long ago a date was.",
   "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
   "scripts": {
-    "test": "node test",
-    "start": "node index.js"
+    "test": "node test/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:ModestoFiguereo/hl-ago.git"
   },
   "keywords": [
     "date",
     "ago"
   ],
   "author": "Modesto Figuereo Fernandez <figuereo.fernandez.modesto@gmail.com>",
-  "license": "GPL-2.0",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ModestoFiguereo/hl-ago/issues"
+  },
+  "homepage": "https://github.com/ModestoFiguereo/hl-ago",
   "dependencies": {
     "tape": "^4.2.0"
   }

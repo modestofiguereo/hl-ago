@@ -1,7 +1,7 @@
 /* ----------------------------------------------------------- *\
-  This file contains the logic for Ago librery.
+  This file contains the logic for Ago library.
 
-  License    : GPL-02
+  License    : MIT License
 
 	Author     : Modesto Figuereo Fernandez.
 	Email      : figuereo.fernandez.modesto@gmail.com
