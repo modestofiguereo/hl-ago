@@ -4,12 +4,16 @@
   "description": "How long ago feature.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "node test",
+    "start": "node index.js"
   },
   "keywords": [
     "date",
     "ago"
   ],
   "author": "Modesto Figuereo Fernandez <figuereo.fernandez.modesto@gmail.com>",
-  "license": "GPL-2.0"
+  "license": "GPL-2.0",
+  "dependencies": {
+    "tape": "^4.2.0"
+  }
 }
